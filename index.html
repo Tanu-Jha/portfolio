@@ -4,644 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tanu Jha - Portfolio</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-light: #fefefe;
-            --secondary-light: #f8fafc;
-            --tertiary-light: #f1f5f9;
-            --accent-purple: #8b5cf6;
-            --accent-blue: #06b6d4;
-            --accent-pink: #ec4899;
-            --accent-orange: #f97316;
-            --accent-green: #10b981;
-            --text-dark: #1e293b;
-            --text-gray: #64748b;
-            --text-light-gray: #94a3b8;
-            --card-bg: rgba(255, 255, 255, 0.7);
-            --card-border: rgba(0, 0, 0, 0.08);
-            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.12);
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-4: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            --gradient-5: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--primary-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Light Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: linear-gradient(135deg, 
-                #fefefe 0%, 
-                #f8fafc 25%, 
-                #f1f5f9 50%, 
-                #e2e8f0 75%, 
-                #f8fafc 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* Soft floating orbs */
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(2px);
-            animation: float 25s infinite linear;
-            opacity: 0.4;
-        }
-
-        .orb:nth-child(1) {
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent);
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .orb:nth-child(2) {
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.3), transparent);
-            left: 70%;
-            animation-delay: 8s;
-        }
-
-        .orb:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.3), transparent);
-            left: 40%;
-            animation-delay: 15s;
-        }
-
-        @keyframes float {
-            from { 
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            to { 
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 32px;
-            padding: 4rem 3rem;
-            border: 1px solid var(--card-border);
-            box-shadow: var(--shadow-lg);
-            animation: slideInUp 1s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient-1);
-            border-radius: 32px 32px 0 0;
-        }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(60px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--text-dark), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            animation: fadeInDown 1.2s ease;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            color: var(--text-gray);
-            margin-bottom: 2.5rem;
-            font-weight: 500;
-            animation: fadeIn 1.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .contact-card {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 1.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            color: var(--text-dark);
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gradient-2);
-        }
-
-        .contact-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Light Navigation */
-        .nav-container {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .nav {
-            display: flex;
-            justify-content: center;
-            padding: 1.5rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.6);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .nav-link {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: white;
-            background: var(--gradient-1);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 6rem 0;
-        }
-
-        .section {
-            margin-bottom: 8rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--text-dark), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .section-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-gray);
-            font-weight: 500;
-        }
-
-        /* Enhanced Tile Grid */
-        .tiles-grid {
-            display: grid;
-            gap: 2.5rem;
-            animation: staggerIn 1s ease;
-        }
-
-        .education-grid { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
-        .projects-grid { grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
-        .skills-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        .accomplishments-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
-
-        /* Light Theme Tile Cards */
-        .tile {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 2.5rem;
-            border: 1px solid var(--card-border);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .tile::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-            transition: left 0.6s;
-        }
-
-        .tile:hover::before {
-            left: 100%;
-        }
-
-        .tile:hover {
-            transform: translateY(-12px) scale(1.02);
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(0, 0, 0, 0.12);
-        }
-
-        /* Education Tiles */
-        .education-tile::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-3);
-            border-radius: 24px 24px 0 0;
-        }
-
-        .education-tile h3 {
-            color: var(--text-dark);
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
-
-        .degree {
-            color: var(--accent-blue);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .education-details {
-            color: var(--text-gray);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* Project Tiles */
-        .project-tile::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-2);
-            border-radius: 24px 24px 0 0;
-        }
-
-        .project-date {
-            background: var(--gradient-2);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
-        }
-
-        .project-tile h3 {
-            color: var(--text-dark);
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .project-list li {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
-            position: relative;
-            color: var(--text-gray);
-            line-height: 1.7;
-        }
-
-        .project-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent-pink);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* Skills Tiles */
-        .skill-tile::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-5);
-            border-radius: 24px 24px 0 0;
-        }
-
-        .skill-tile {
-            text-align: center;
-        }
-
-        .skill-tile h3 {
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            background: linear-gradient(135deg, var(--accent-orange), var(--accent-pink));
-            color: white;
-            padding: 0.8rem 1.2rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
-        }
-
-        /* Accomplishment Tiles */
-        .accomplishment-tile::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-1);
-            border-radius: 24px 24px 0 0;
-        }
-
-        .accomplishment-tile h3 {
-            color: var(--text-dark);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-        }
-
-        .accomplishment-tile p {
-            color: var(--text-gray);
-            line-height: 1.7;
-            font-size: 1.1rem;
-        }
-
-        /* Light Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: var(--gradient-1);
-            z-index: 1001;
-            transition: width 0.1s ease;
-        }
-
-        /* Light Footer */
-        .footer {
-            background: rgba(248, 250, 252, 0.8);
-            backdrop-filter: blur(20px);
-            color: var(--text-gray);
-            text-align: center;
-            padding: 4rem 0;
-            margin-top: 6rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .hero p { font-size: 1.3rem; }
-            .hero-content { padding: 2.5rem 2rem; }
-            .section-title { font-size: 2.5rem; }
-            .nav-menu { 
-                flex-direction: column; 
-                gap: 0.5rem; 
-                padding: 1rem; 
-            }
-            .contact-grid { grid-template-columns: 1fr; }
-            .education-grid, .projects-grid, .skills-grid, .accomplishments-grid {
-                grid-template-columns: 1fr;
-            }
-            .tile { padding: 2rem 1.5rem; }
-            .container { padding: 0 20px; }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2.5rem; }
-            .section-title { font-size: 2rem; }
-            .container { padding: 0 16px; }
-        }
-    </style>
 </head>
-<body>
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progressBar"></div>
+<body bgcolor="#f8f9fa">
 
-    <!-- Light Background -->
-    <div class="bg-animation"></div>
+    <!-- Header Section -->
+    <center>
+        <table width="80%" cellpadding="20" cellspacing="0" bgcolor="white" border="1" bordercolor="#ddd">
+            <tr>
+                <td align="center">
+                    <h1><font size="6" color="#2c3e50">Tanu Jha</font></h1>
+                    <h3><font color="#666">Computer Science & Business Systems Student</font></h3>
+                    <p><b>Email:</b> tanujha60987@gmail.com</p>
+                    <p><b>Phone:</b> +91 9508753937</p>
+                </td>
+            </tr>
+        </table>
+    </center>
 
-    <!-- Soft Floating Orbs -->
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Tanu Jha</h1>
-                <p>Computer Science & Business Systems Student</p>
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <strong>📧 Email</strong><br>
-                        tanujha60987@gmail.com
-                    </div>
-                    <div class="contact-card">
-                        <strong>📱 Phone</strong><br>
-                        +91 9508753937
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <br><br>
 
     <!-- Navigation -->
-    <div class="nav-container">
-        <nav class="nav">
-            <ul class="nav-menu">
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#accomplishments" class="nav-link">Accomplishments</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-            </ul>
-        </nav>
-    </div>
+    <center>
+        <table width="60%" cellpadding="10" cellspacing="0" bgcolor="white" border="1" bordercolor="#ddd">
+            <tr>
+                <td align="center"><a href="#education"><b>Education</b></a></td>
+                <td align="center"><a href="#projects"><b>Projects</b></a></td>
+                <td align="center"><a href="#accomplishments"><b>Accomplishments</b></a></td>
+                <td align="center"><a href="#skills"><b>Skills</b></a></td>
+            </tr>
+        </table>
+    </center>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <!-- Education Section -->
-            <section id="education" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">Education</h2>
-                    <p class="section-subtitle">Academic Journey & Achievements</p>
-                </div>
+    <br><br>
+
+    <!-- Education Section -->
+    <a name="education"></a>
+    <center>
+        <h2><font color="#2c3e50">Education</font></h2>
+        
+        <table width="80%" cellpadding="15" cellspacing="10">
+            <tr>
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top">
+                    <h3><font color="#3498db">Techno India University, Kolkata</font></h3>
+                    <p><b>Bachelor of Technology in Computer Science and Business Systems</b></p>
+                    <p><b>CPI:</b> 8.12</p>
+                    <p><b>Duration:</b> July 2022 - May 2026 (Expected)</p>
+                </td>
+            </tr>
+            
+            <tr>
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top">
+                    <h3><font color="#3498db">Polestar Day Boarding Public School, Madhubani</font></h3>
+                    <p><b>All India Senior School Certificate Examination (AISSCE) - CBSE</b></p>
+                    <p><b>Score:</b> 81.2</p>
+                </td>
+            </tr>
+            
+            <tr>
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top">
+                    <h3><font color="#3498db">S S Gyan Bharti Public School, Benipatti</font></h3>
+                    <p><b>All India Secondary School Examination (AISSE) - CBSE</b></p>
+                    <p><b>Score:</b> 86.9</p>
+                </td>
+            </tr>
+        </table>
+    </center>
+
+    <br><br>
+
+    <!-- Projects Section -->
+    <a name="projects"></a>
+    <center>
+        <h2><font color="#2c3e50">Projects</font></h2>
+        
+        <table width="80%" cellpadding="15" cellspacing="10">
+            <tr>
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top">
+                    <h3><font color="#e74c3c">Plant Disease Analysis</font></h3>
+                    <p><i><font color="#666">January 2025</font></i></p>
+                    <ul>
+                        <li>Developed a custom CNN architecture for plant disease classification using PyTorch</li>
+                        <li>Designed and deployed an interactive web interface leveraging HTML, CSS, JavaScript, and Flask</li>
+                        <li>Achieved 92% classification accuracy—surpassing VGG19 benchmark—with a model 10x smaller and faster</li>
+                    </ul>
+                </td>
+            </tr>
+            
+            <tr>
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top">
+                    <h3><font color="#e74c3c">Portfolio Website Development</font></h3>
+                    <p><i><font color="#666">October 2024</font></i></p>
+                    <ul>
+                        <li>Architected and implemented a responsive portfolio website using HTML, CSS, and MERN stack</li>
+                        <li>Integrated a dynamic blog page built with React for frontend and Node.js with Express for backend</li>
+                        <li>Ensured optimal performance and compatibility across various devices</li>
+                    </ul>
+                </td>
+            </tr>
+            
+            <tr>
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top">
+                    <h3><font color="#e74c3c">Medical Chatbot</font></h3>
+                    <p><i><font color="#666">May 2024</font></i></p>
+                    <ul>
+                        <li>Implemented LLaMA to generate high-dimensional vector representations of medical encyclopedia content</li>
+                        <li>Applied Retrieval-Augmented Generation (RAG) to enhance query handling and information retrieval</li>
+                        <li>Designed interactive user interface using Gradio for real-time medical information queries</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </center>
+
+    <br><br>
+
+    <!-- Accomplishments Section -->
+    <a name="accomplishments"></a>
+    <center>
+        <h2><font color="#2c3e50">Accomplishments</font></h2>
+        
+        <table width="80%" cellpadding="15" cellspacing="10">
+            <tr>
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top">
+                    <h3><font color="#9b59b6">TCS CODEVITA</font></h3>
+                    <p>Rank 53 in Round 2 and 903 in Round 1 among 3 lakh+ participants</p>
+                </td>
+            </tr>
+            
+            <tr>
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top">
+                    <h3><font color="#9b59b6">VITB Health Hackathon</font></h3>
+                    <p>Finalist for an AI health hackathon with problem statement regarding Predictive Health Analysis</p>
+                </td>
+            </tr>
+        </table>
+    </center>
+
+    <br><br>
+
+    <!-- Skills Section -->
+    <a name="skills"></a>
+    <center>
+        <h2><font color="#2c3e50">Skills</font></h2>
+        
+        <table width="80%" cellpadding="15" cellspacing="10">
+            <tr>
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top" width="25%">
+                    <h3><font color="#f39c12">Programming Languages</font></h3>
+                    <p>• C/C++</p>
+                    <p>• Python</p>
+                </td>
                 
-                <div class="tiles-grid education-grid">
-                    <div class="tile education-tile">
-                        <h3>Techno India University, Kolkata</h3>
-                        <div class="degree">Bachelor of Technology in Computer Science and Business Systems</div>
-                        <div class="education-details">
-                            <strong>CPI:</strong> 8.12<br>
-                            <strong>Duration:</strong> July 2022 - May 2026 (Expected)
-                        </div>
-                    </div>
-
-                    <div class="tile education-tile">
-                        <h3>Polestar Day Boarding Public School, Madhubani</h3>
-                        <div class="degree">All India Senior School Certificate Examination (AISSCE) - CBSE</div>
-                    </div>
-
-                    <div class="tile education-tile">
-                        <h3>S S Gyan Bharti Public School, Benipatti</h3>
-                        <div class="degree">All India Secondary School Examination (AISSE) - CBSE</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Projects Section -->
-            <section id="projects" class="section">
-                <div class="section-header">
-                    <h2 class="section-title">Projects</h2>
-                    <p class="section-subtitle">Innovation Through Code</p>
-                </div>
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top" width="25%">
+                    <h3><font color="#f39c12">Core Courses</font></h3>
+                    <p>• Algorithms</p>
+                    <p>• Computer Architecture</p>
+                    <p>• Machine Learning</p>
+                    <p>• Compiler Design</p>
+                    <p>• Theory of Computation</p>
+                    <p>• Database</p>
+                </td>
                 
-                <div class="tiles-grid projects-grid">
-                    <div class="tile project-tile">
-                        <div class="project-date">January 2025</div>
-                        <h3>Plant Disease Analysis</h3>
-                        <ul class="project-list">
-                            <li>Developed a custom CNN architecture for plant disease classification using PyTorch</li>
-                            <li>D
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top" width="25%">
+                    <h3><font color="#f39c12">Libraries & Frameworks</font></h3>
+                    <p>• Pandas</p>
+                    <p>• NumPy</p>
+                    <p>• Scikit-learn</p>
+                    <p>• PyTorch</p>
+                    <p>• Hugging Face</p>
+                    <p>• React</p>
+                    <p>• HTML/CSS</p>
+                </td>
+                
+                <td bgcolor="white" border="1" bordercolor="#ddd" valign="top" width="25%">
+                    <h3><font color="#f39c12">Tools & OS</font></h3>
+                    <p>• Git</p>
+                    <p>• Jupyter Notebook</p>
+                    <p>• Linux</p>
+                    <p>• Windows</p>
+                    <p>• LaTeX</p>
+                </td>
+            </tr>
+        </table>
+    </center>
+
+    <br><br>
+
+    <!-- Footer -->
+    <center>
+        <table width="80%" cellpadding="20" cellspacing="0" bgcolor="#2c3e50" border="1" bordercolor="#ddd">
+            <tr>
+                <td align="center">
+                    <p><font color="white">&copy; 2025 Tanu Jha. All rights reserved.</font></p>
+                </td>
+            </tr>
+        </table>
+    </center>
+
+    <br><br>
+
+</body>
+</html>
